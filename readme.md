@@ -1,1 +1,2 @@
-# Appy Hetereogeous Learning Rates for possibly solving barren plateau problem.
+# Hetereogeous Learning Rates for Solving Barren Plateau in Quantum Neural Networks
+
