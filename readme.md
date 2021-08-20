@@ -1,0 +1,1 @@
+# Appy Hetereogeous Learning Rates for possibly solving barren plateau problem.
