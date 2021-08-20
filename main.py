@@ -74,7 +74,8 @@ start_time = time.time()
 
 BATCH_SIZE = 32
 batches = len(x_train) // BATCH_SIZE
-for epoch in range(50):
+epochs = 50
+for epoch in range(epochs):
     # for adjusting learning rates (optional)
     if epoch == 25:
         model.classical_optimizer = tf.keras.optimizers.Adam(0.005)
@@ -99,12 +100,12 @@ for epoch in range(50):
 
             grad_cls = t2.gradient(loss, model.cls_e.trainable_variables + \
                                         model.cls_d.trainable_variables)
-            model.optimizer.apply_gradients(zip(grad_cls, model.cls_e.trainable_variables + \
+            model.classical_optimizer.apply_gradients(zip(grad_cls, model.cls_e.trainable_variables + \
                                         model.cls_d.trainable_variables))
         
         sum_loss += loss
-        print('Batch {}/{} MSE Loss {:.4f}'.format(batch, batches, loss), end='\r')
-        
+        print('Batch {}/{} Loss {:.4f}'.format(batch, batches, loss), end='\r')
+
     avg_loss = sum_loss/batches
 
     # Run test samples.
@@ -114,4 +115,4 @@ for epoch in range(50):
 
     et = time.time() - start_time
     et = str(datetime.timedelta(seconds=et))[:-7]
-    print('Elapsed {}\t Epoch {} [Train Loss: {:.4f}]\t [Test Loss: {:.4f}]'.format(et, epoch, avg_loss.numpy(), test_loss.numpy()))
+    print('Elapsed {}\t Epoch {}/{} [Train Loss: {:.4f}]\t [Test Loss: {:.4f}]'.format(et, epoch+1, epochs, avg_loss.numpy(), test_loss.numpy()))
