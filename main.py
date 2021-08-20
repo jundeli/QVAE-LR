@@ -69,6 +69,7 @@ class Autoencoder(Model):
 
 model = Autoencoder(latent_dim)
 
+
 print('Start training...')
 start_time = time.time()
 
